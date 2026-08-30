@@ -1,0 +1,33 @@
+{
+  "name": "webmcp-taskboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "WebMCP-native task collaboration board (Vertical Slice 1)",
+  "scripts": {
+    "dev": "vite --strictPort -l error --host 0.0.0.0",
+    "dev:localhost": "vite --strictPort -l error",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --strictPort",
+    "typecheck": "tsc -b --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react-swc": "^4.2.2",
+    "happy-dom": "^15.11.7",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^2.1.9"
+  }
+}
