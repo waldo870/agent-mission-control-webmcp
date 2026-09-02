@@ -1,5 +1,114 @@
 # Agent Mission Control
 
+
+**A shared mission workspace where humans use the visual UI and AI agents use structured WebMCP tools — both acting on the same live application state.**
+
+🚀 **Live Demo:** https://agent-mission-control-webmcp-roan.vercel.app/
+
+💻 **Source Code:** https://github.com/waldo870/agent-mission-control-webmcp
+
+**Status:** Production deployed · Native WebMCP verified in Chrome · 38/38 tests passing
+
+---
+
+## 5 WebMCP Tools
+
+Agent Mission Control exposes five tools through `document.modelContext`:
+
+| Tool                  | Purpose                                             |
+| --------------------- | --------------------------------------------------- |
+| `list_tasks`          | List all tasks or filter them by status             |
+| `create_task`         | Create a task as an AI agent                        |
+| `update_task`         | Update task title, description, or status           |
+| `complete_task`       | Mark a task as completed                            |
+| `get_project_summary` | Read current mission progress and completion status |
+
+The visual UI and WebMCP tools share the same `TaskService`, so actions performed by a human or an AI agent immediately appear in the same mission state.
+
+---
+
+## How to Test WebMCP
+
+### 1. Enable WebMCP in Chrome
+
+Open:
+
+`chrome://flags/#enable-webmcp-testing`
+
+Set **WebMCP for testing** to **Enabled**, then relaunch Chrome.
+
+### 2. Open the production demo
+
+https://agent-mission-control-webmcp-roan.vercel.app/
+
+### 3. Open Chrome DevTools → Console
+
+Check that WebMCP is available:
+
+```js
+'modelContext' in document
+```
+
+Expected:
+
+```text
+true
+```
+
+Discover the registered tools:
+
+```js
+const tools = await document.modelContext.getTools();
+tools.map(t => t.name);
+```
+
+Expected:
+
+```text
+[
+  "complete_task",
+  "create_task",
+  "get_project_summary",
+  "list_tasks",
+  "update_task"
+]
+```
+
+### 4. Create a task through WebMCP
+
+```js
+const create = tools.find(t => t.name === "create_task");
+
+await document.modelContext.executeTool(
+  create,
+  JSON.stringify({
+    title: "WebMCP Demo Task",
+    description: "Created through the WebMCP Imperative API"
+  })
+);
+```
+
+The new task should immediately appear in the **TO DO** column with **Agent** attribution.
+
+This demonstrates the production path:
+
+```text
+AI Agent
+   ↓
+document.modelContext
+   ↓
+WebMCP Tool
+   ↓
+TaskService
+   ↓
+Shared State
+   ↓
+React UI
+```
+
+The human-facing UI and agent-facing WebMCP interface operate on the same application state.
+
+
 A shared workspace where humans and web agents collaborate on the same task
 board. **Humans** interact through the on-screen UI. **Web agents** interact
 through the browser's native [WebMCP](https://webmachinelearning.github.io/webmcp/)
