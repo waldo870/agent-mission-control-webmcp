@@ -9,6 +9,13 @@
 
 **Status:** Production deployed · Native WebMCP verified in Chrome · 38/38 tests passing
 
+## 🎥 Demo
+
+[![Agent Mission Control — WebMCP Demo](https://img.youtube.com/vi/nWFL4EoBX4o/maxresdefault.jpg)](https://youtu.be/nWFL4EoBX4o)
+
+**Watch the 2.5-minute demo:** Agent Mission Control demonstrates five WebMCP tools operating on the same shared state as the human UI.
+
+▶️ [Watch on YouTube](https://youtu.be/nWFL4EoBX4o)
 ---
 
 ## 5 WebMCP Tools
